@@ -1,0 +1,52 @@
+@model tarea_semana_3.Models.Cliente
+
+@{
+    ViewData["Title"] = "Editar cliente";
+}
+
+<h1>Editar cliente #@Model.Id</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group mb-3">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" placeholder="Ej: Ana" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Apellido" class="control-label"></label>
+                <input asp-for="Apellido" class="form-control" placeholder="Ej: Pérez" />
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Cedula" class="control-label"></label>
+                <input asp-for="Cedula" class="form-control" inputmode="numeric" aria-describedby="ayudaCedula" />
+                <div id="ayudaCedula" class="form-text">10 números, sin guiones.</div>
+                <span asp-validation-for="Cedula" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Correo" class="control-label"></label>
+                <input asp-for="Correo" class="form-control" placeholder="Ej: ana@correo.com" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" type="tel" class="form-control" inputmode="numeric" aria-describedby="ayudaTelefono" />
+                <div id="ayudaTelefono" class="form-text">Entre 7 y 10 números.</div>
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Actualizar" class="btn btn-success" />
+                <a class="btn btn-outline-secondary ms-2" asp-action="Index">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
