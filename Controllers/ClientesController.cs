@@ -47,8 +47,10 @@ namespace tarea_semana_3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Cedula,Correo,Telefono")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Cedula,Correo,Telefono,FechaNacimiento,Genero,Direccion,Ciudad,LimiteCredito")] Cliente cliente)
         {
+            ValidarEdad(cliente);
+
             if (ModelState.IsValid)
             {
                 _context.Add(cliente);
@@ -76,12 +78,14 @@ namespace tarea_semana_3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellido,Cedula,Correo,Telefono")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellido,Cedula,Correo,Telefono,FechaNacimiento,Genero,Direccion,Ciudad,LimiteCredito")] Cliente cliente)
         {
             if (id != cliente.Id)
             {
                 return NotFound();
             }
+
+            ValidarEdad(cliente);
 
             if (ModelState.IsValid)
             {
@@ -142,6 +146,14 @@ namespace tarea_semana_3.Controllers
         private bool ClienteExists(int id)
         {
             return _context.Clientes.Any(e => e.Id == id);
+        }
+
+        private void ValidarEdad(Cliente cliente)
+        {
+            if (cliente.FechaNacimiento > DateTime.Today.AddYears(-18))
+            {
+                ModelState.AddModelError("FechaNacimiento", "El cliente debe ser mayor de 18 años");
+            }
         }
     }
 }

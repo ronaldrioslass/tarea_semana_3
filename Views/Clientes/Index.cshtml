@@ -37,6 +37,9 @@
                 @Html.DisplayNameFor(model => model.Telefono)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Ciudad)
+            </th>
+            <th>
                 Acciones
             </th>
         </tr>
@@ -45,7 +48,7 @@
 @if (!Model.Any())
 {
         <tr>
-            <td colspan="7" class="text-center">Todavía no hay clientes registrados.</td>
+            <td colspan="8" class="text-center">Todavía no hay clientes registrados.</td>
         </tr>
 }
 @foreach (var item in Model) {
@@ -67,6 +70,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciudad)
             </td>
             <td class="text-nowrap">
                 <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a>

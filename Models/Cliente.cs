@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace tarea_semana_3.Models
 {
@@ -30,5 +31,32 @@ namespace tarea_semana_3.Models
         [StringLength(10, ErrorMessage = "El teléfono debe tener entre 7 y 10 números")]
         [RegularExpression("^[0-9]{7,10}$", ErrorMessage = "El teléfono debe tener entre 7 y 10 números")]
         public string Telefono { get; set; }
+
+        [Display(Name = "Fecha de nacimiento")]
+        [Required(ErrorMessage = "La fecha de nacimiento es requerida")]
+        [DataType(DataType.Date)]
+        [Column(TypeName = "date")]
+        public DateTime FechaNacimiento { get; set; }
+
+        [Display(Name = "Género")]
+        [Required(ErrorMessage = "El género es requerido")]
+        [StringLength(20, ErrorMessage = "Seleccione un género válido")]
+        [RegularExpression("^(Masculino|Femenino|Otro)$", ErrorMessage = "Seleccione un género válido")]
+        public string Genero { get; set; }
+
+        [Display(Name = "Dirección")]
+        [Required(ErrorMessage = "La dirección es requerida")]
+        [StringLength(200, MinimumLength = 5, ErrorMessage = "La dirección debe tener entre 5 y 200 caracteres")]
+        public string Direccion { get; set; }
+
+        [Required(ErrorMessage = "La ciudad es requerida")]
+        [StringLength(50, ErrorMessage = "La ciudad debe tener máximo 50 caracteres")]
+        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "La ciudad solo puede tener letras")]
+        public string Ciudad { get; set; }
+
+        [Display(Name = "Límite de crédito")]
+        [Required(ErrorMessage = "El límite de crédito es requerido")]
+        [Range(0, 10000, ErrorMessage = "El límite de crédito debe estar entre 0 y 10000")]
+        public int LimiteCredito { get; set; }
     }
 }

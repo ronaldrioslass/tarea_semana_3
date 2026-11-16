@@ -1,3 +1,4 @@
+﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -33,10 +34,31 @@ namespace tarea_semana_3.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)");
 
+                    b.Property<string>("Ciudad")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
                     b.Property<string>("Correo")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Genero")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<int>("LimiteCredito")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
